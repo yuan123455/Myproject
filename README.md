@@ -1,4 +1,11 @@
 # templae
+本项目自创建基本模板，并对element ui进行部分封装，同时对常用方法、指令进行封装便于多次使用。
+技术栈：
+vue2.0
+vuex
+vue-router
+axios
+elememt-ui
 
 ## Project setup
 ```
