@@ -1,16 +1,27 @@
 import VueRouter from "vue-router";
 import Vue from "vue";
+
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
     routes: [
         {
+            path: "/layout",
+            name: 'layout',
+            component: () => import("@/layout/layout.vue"),
+        },
+        {
             path: "/",
+            name: "login",
+            component: () => import("@/layout/login.vue"),
+        },
+        {
+            path: "/index",
             name: "index",
             component: () => import("@/views/index.vue"),
             children: [
                 {
-                    path: "/",
+                    path: "mybook",
                     name: 'mybook',
                     component: () => import("@/views/mybook.vue"),
                 },
@@ -32,5 +43,11 @@ export default new VueRouter({
             ],
         },
 
+
     ]
 })
+//全局路由守卫
+router.beforeEach((to, _, next) => {
+    next();
+});
+export default router;
