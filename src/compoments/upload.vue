@@ -2,14 +2,14 @@
   <div>
     <el-upload
       ref="upload"
-      action="#"
+      action="http://localhost:8091"
       :list-type="listType"
-      :auto-upload="false"
+      :auto-upload="true"
       :file-list="fileList"
       :on-change="(file, fileList) => $emit('change', file, fileList)"
       :before-upload="(file) => $emit('upload', file)"
       :on-success="
-        (res, file, fileList) => $emit('success', res, file, fileList)
+        (res, file, fileLis) => $emit('success', res, file, fileList)
       "
       :http-request="fileRequest"
     >
@@ -34,11 +34,12 @@
             </span>
           </span>
         </div>
+        <!-- <el-button @click="Upload" type="primary" style="margin-top: 5px">{{
+          UploadName
+        }}</el-button> -->
       </template>
+      <el-button type="primary">{{ UploadName }}</el-button>
     </el-upload>
-    <el-button @click="Upload" type="primary" style="margin-top: 5px"
-      >上传</el-button
-    >
   </div>
 </template>
 
@@ -54,6 +55,10 @@ export default {
     listType: {
       typeof: String,
       default: "text",
+    },
+    UploadName: {
+      typeof: String,
+      default: "上传",
     },
   },
   data() {
@@ -107,18 +112,15 @@ export default {
       formData.append("file", file);
       FileUpload(formData)
         .then((result) => {
-          console.log(result);
+          this.$message.success(result.message);
         })
         .catch((err) => {
           this.$message.error("文件上传失败:", err);
         });
     },
-    Upload() {
-      this.$refs.upload.submit();
-    },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="less" scoped>
 </style>

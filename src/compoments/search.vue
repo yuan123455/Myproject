@@ -94,8 +94,6 @@ export default {
   computed: {},
   methods: {
     reset() {
-      let d = new Date();
-      console.log(d.getSeconds(), "@", d.getMilliseconds());
       this.form = {};
     },
     //过滤

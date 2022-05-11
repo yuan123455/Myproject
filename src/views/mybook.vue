@@ -3,7 +3,7 @@
     我的藏书:实现对已阅读书籍进行分类展示，同时能够对书籍进行上传、下载、搜索书籍、添加读后感、修改读后感
     <el-header height="200">
       <search :SearchList="list" :mode="FromList" @search="search1"></search>
-      <upload></upload>
+      <upload UploadName="图书上传"></upload>
     </el-header>
     <el-main>
       <Table :cols="tableList" :tableData="tableData" :count="count"></Table>
@@ -56,10 +56,7 @@ export default {
     },
     search1(val) {},
   },
-  created() {
-    this.tableData = this.test;
-    this.count = this.test.length;
-  },
+  created() {},
   mounted() {},
 };
 </script>
